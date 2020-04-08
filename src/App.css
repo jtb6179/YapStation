@@ -13,6 +13,69 @@
   }
 }
 
+img.bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+/*  Full page background color */
+div.admin-bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+  img.bg {
+    left: 50%;
+    margin-left: -512px;   /* 50% */
+  }
+
+  div.admin-bg {
+    left: 50%;
+    margin-left: -512px;   /* 50% */
+  }
+}
+
+.register-card {
+  margin-left: 450px;
+  padding-left: 10px;
+  height: auto;
+  width: 500px;
+}
+
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+/* body {
+  background-image: url("./image/train-track-forest.jpg");
+} */
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
