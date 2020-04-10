@@ -57,10 +57,9 @@ class App extends Component {
 
     
     addOneBabble = (babObj) => {
-      this.setState({
+        this.setState({
         babbles: [...this.state.babbles, babObj]
         })
-  
     }
 handleLoginSubmit = (userInfo) => {
   console.log('login')
@@ -103,15 +102,19 @@ return <ProfileContainer  user={this.state.user} token={this.state.token}
                                           babbles={this.state.babbles} />
 }
 
+  setBabblesBackToEmptyArray = () => {
+    this.state.babbles.splice()
+  }
   render() {
     return (
       <div>
-        <NavBar clickedState={this.state.clicked} token={this.state.token} />
+        <NavBar clickedState={this.state.clicked} token={this.state.token} 
+        babbles={this.state.babbles} setBabblesBackToEmptyArray={this.setBabblesBackToEmptyArray} />
           <Switch>
             <Route path="/login" render={ this.renderRegisterForm } />
             <Route path="/register" render={ this.renderRegisterForm } />
             <Route path="/profile" render={ this.renderProfile } />
-            <Route path="/" exact component={ Home } token={this.state.token} />
+            <Route path="/" exact component={ Home } />
             <Route path="/welcome/index" exact component={ WelcomePage }/>
             <Route render={ () => <p>Page not Found</p> } />
           </Switch>

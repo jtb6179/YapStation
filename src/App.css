@@ -7,6 +7,63 @@
   pointer-events: none;
 }
 
+.button-thing{
+	position: relative;
+	display: inline-block;
+	padding: 1.2em 2em;
+	text-decoration: none;
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+  background: linear-gradient(270deg, #e63b2e, #e7d8d1, #e86d2f);
+  background-size: 600% 600%;
+  
+  animation: AnimationName 24s ease infinite;
+  display: inline-block;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 12px;
+	padding: 10px 30px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.3);
+	border-bottom-width: 3px;
+  
+}
+    @keyframes AnimationName {
+        0%{background-position:0% 50%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 50%}
+    }
+	/* button-thing::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		background: linear-gradient(135deg, #E63B2E, #E86D2F);
+		border-radius: 4px;
+		transition: box-shadow .5s ease, transform .2s ease; 
+    
+		box-shadow: 0 2px 5px rgba(0, 0, 0, .2);
+	}
+	
+	button-thing:hover::before {
+		box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
+	}
+	
+  button-thing::after {
+		position: relative;
+		display: inline-block;
+		content: attr(data-title);
+		transition: transform .2s ease; 
+		font-weight: bold;
+		letter-spacing: .01em;
+	} */
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

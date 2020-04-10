@@ -4,17 +4,31 @@ import logo from '../image/YapStation logo.PNG'
 
 
 
-const NavBar = (props) => {
+class NavBar extends React.Component {
 
-  let  clickingLogOut = (event) => {
-      let newClicked = !props.clickedState
+  state = {
+    babbles: []
+  }
+
+    clickingLogOut = (event) => {
+      let newClicked = !this.props.clickedState
        if (newClicked) {
-       localStorage.clear(props.token)
+       localStorage.clear(this.props.token)
+       this.props.setBabblesBackToEmptyArray()
       }
-      // alert("Account was successfully Logged Out. Thank you, Come again.")
+      // fetch("http://localhost:3000/babbles")
+      //   .then(res => res.json())
+      //   .then((data) =>{
+      //     data = []
+      //     this.setState({
+      //       babbles: data
+      //     })
+      //   })
     }
-  return(
-    <nav>
+
+    render(){
+      return(
+        <nav>
       <div className="nav-wrapper red ">
       
       <span className="brand-logo" ><img src={logo} alt='yap' width="230"  height="auto" /></span>
@@ -35,13 +49,14 @@ const NavBar = (props) => {
               <li>
                 <NavLink to="/profile" className="tab">Profile</NavLink>
               </li>
-              <li>
-                <NavLink to="/welcome/index"  onClick={clickingLogOut()} className="tab">Log Out</NavLink>
+              <li >
+                <NavLink to="/welcome/index" onClick={this.clickingLogOut()} className="tab">Log Out</NavLink>
               </li>
             </ul>
             </div>
     </nav>
   )
+}
 };
 
 export default NavBar;

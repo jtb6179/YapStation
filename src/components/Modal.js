@@ -52,15 +52,16 @@ class Modal extends Component {
     return (
       <div>
         <button
-          className="waves-effect waves-light btn modal-trigger pulse"
+          className="button-thing modal-trigger"
           data-target="modal1"
         >
-          What are you gonna Blab about?
+          What are you gonna 
+          Blab about?
         </button>
 
         <div ref={ Modal => { this.Modal = Modal;}} id="modal1" className="modal">
           <div className="modal-content">
-            <h4>{this.props.username}&apos;s Babble</h4>
+            <h5>{this.props.username}&apos;s Babble</h5>
               <form onSubmit={this.handleSubmit}>
                   <input type="text" name="text"  id="textarea1" className="materialize-textarea" 
                               onChange={this.handleChange} 

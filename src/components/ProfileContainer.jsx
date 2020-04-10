@@ -5,12 +5,24 @@ import "materialize-css/dist/css/materialize.min.css";
 import Modal from "./Modal";
 
 
+
 class ProfileContainer extends Component {
+
+    // state = {
+    //     user: []
+    // }
 
     componentDidMount() {
         if(!this.props.token){
           this.props.history.push("/login")
         }
+    //    fetch("http://localhost:3000/api/v1/users")
+    //     .then(res => res.json())
+    //     .then((data) =>{
+    //         this.setState({
+    //             user: data
+    //         })
+    //     })
       }  
 
       handlingModalSubmit = (babbleObj) => {
@@ -25,21 +37,22 @@ class ProfileContainer extends Component {
             .then(res => res.json())
             .then((bab) => {
                 console.log(bab);
-                if (bab.id) {
+                if (bab.id && babbleObj !== "") {
                     this.props.addOneBabble(bab)
                   } else {
-                    console.log("SNACK FAILED. YOU SUCK AT LOGGING IN");
+                    console.log("BABBLE FAILED. YOU SUCK AT LOGGING IN");
+                    alert("Sorry, I ain't saving no Empty post. Gtfo of here")
                   }
             })
       }
 
     render() {
-        let {user:{bio, profile_name, age, username, location, education_status}} = this.props
-        // console.log(this.state.user.username);
         
+        let {user:{bio, profile_name, age, username, location, education_status}} = this.props
+
         return (
-            <div>
-                <div style={{float: "left", paddingLeft: 10}}>
+            <div className="row">
+                <div className="col s5">
                     <h2>{username}&apos;s Profile</h2>
                     <h3>Profile Name: {profile_name}</h3>
                         <p>Bio: {bio}</p>
@@ -47,12 +60,14 @@ class ProfileContainer extends Component {
                         <p>location: {location}</p>
                         <p>Education: {education_status}</p>
                     </div>
-                    <Modal  username={profile_name} 
-                                   handleSubmit={this.handlingModalSubmit}  
-                                    token={this.props.token}
-                                   />
-                    <BabbleFeedContainer style={{float: 'right', paddingRight: 10 }} babbles={this.props.babbles}
-                                                          token={this.props.token} />
+                    <div className="col s3">
+                        <Modal  username={profile_name} 
+                                    handleSubmit={this.handlingModalSubmit}  
+                                        token={this.props.token}
+                                    />
+                        <BabbleFeedContainer  babbles={this.props.babbles}
+                                                            token={this.props.token} />
+                    </div>
             </div>
         )
     }
