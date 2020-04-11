@@ -1,10 +1,54 @@
 import React, { Component } from 'react'
 
  class CommentsContainer extends Component {
+
+    state = {
+        text: ""
+    }
+
+     handleGrabbingTheID = () =>{
+        let theSpecificObject = this.props.babbles.filter((post) => {
+            return post.includes(this.props.idOfElement)
+        })
+        this.props.ReceiveComment(theSpecificObject.id)
+     }
+
+     handleChange = (event) => {
+        event.preventDefault()
+        console.log(event.target.value);
+        let {name, value} = event.target
+        this.setState({
+          [name]: value
+        })
+      }
+    
+      handleSubmit = (event) => {
+        event.preventDefault()
+        this.props.addCom(this.state)
+      }
     render() {
+        console.log(this.props.babb);
+        //This is not How you do this. Figure out how to get the specific post. 
+        //as Post are created. they are passed in as an array. you must find the 
+        //Specific post in that list and when you click on it. it grabs the correct
+        //One and shows it. 
+        let mappedOutPost = this.props.babb.map((babbObj) => {
+            return babbObj.text
+        })
         return (
             <div>
-                work please
+                <div className="card">
+                        <span>{mappedOutPost}</span>
+                </div>
+                    <div className="card-action">
+                        <form onSubmit={this.handleSubmit}>
+                            <input type="text" name="text"  id="textarea1" className="materialize-textarea" 
+                                    onChange={this.handleChange} 
+                                    value={this.state.text} 
+                                    />
+                            <button type="submit"  className=" waves-effect btn-small" >Post your Babble</button>
+                        </form>
+                    </div>
             </div>
         )
     }

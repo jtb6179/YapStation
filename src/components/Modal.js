@@ -34,7 +34,7 @@ class Modal extends Component {
 
   handleChange = (event) => {
     event.preventDefault()
-    console.log(event.target.value);
+    // console.log(event.target.value);
     let {name, value} = event.target
     this.setState({
       [name]: value
@@ -52,7 +52,7 @@ class Modal extends Component {
     return (
       <div>
         <button
-          className="button-thing modal-trigger"
+          className="button-thing z-depth-3 modal-trigger"
           data-target="modal1"
         >
           What are you gonna 

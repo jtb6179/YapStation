@@ -14,7 +14,7 @@ class NavBar extends React.Component {
       let newClicked = !this.props.clickedState
        if (newClicked) {
        localStorage.clear(this.props.token)
-       this.props.setBabblesBackToEmptyArray()
+      //  this.props.setBabblesBackToEmptyArray()
       }
       // fetch("http://localhost:3000/babbles")
       //   .then(res => res.json())

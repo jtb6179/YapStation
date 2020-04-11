@@ -100,11 +100,11 @@ renderProfile = (routerProps) => {
 return <ProfileContainer  user={this.state.user} token={this.state.token} 
                                           addOneBabble={this.addOneBabble} 
                                           babbles={this.state.babbles} />
-}
+      }
 
-  setBabblesBackToEmptyArray = () => {
-    this.state.babbles.splice()
-  }
+  // setBabblesBackToEmptyArray = () => {
+  //   this.state.babbles.splice()
+  // }
   render() {
     return (
       <div>
