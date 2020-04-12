@@ -52,7 +52,7 @@ class RegisterForm extends Component {
     return (
         <div>
         Create your New Account & profile
-          <div className="container">
+          <div className="container z-depth-4">
             <div className="card">
                 <div className="card-content ">
               <div className="card-action red accent-1 white-text">

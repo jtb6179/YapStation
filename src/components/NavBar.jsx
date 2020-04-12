@@ -28,32 +28,32 @@ class NavBar extends React.Component {
 
     render(){
       return(
-        <nav>
+    <nav>
       <div className="nav-wrapper red ">
-      
-      <span className="brand-logo" ><img src={logo} alt='yap' width="230"  height="auto" /></span>
-              <ul id="nav-mobile" className="right hide-on-med-and-down">
-              {
-                 localStorage.token === "undefined" ? null : 
-              <li>
-                <NavLink to="/" className="tab">Home</NavLink>
-              </li>
-              }
-              
-              <li>
-                <NavLink to="/login" className="tab">Login</NavLink>
-              </li>
-              <li>
-                <NavLink to="/register" className="tab">Register</NavLink>
-              </li>
-              <li>
-                <NavLink to="/profile" className="tab">Profile</NavLink>
-              </li>
-              <li >
-                <NavLink to="/welcome/index" onClick={this.clickingLogOut()} className="tab">Log Out</NavLink>
-              </li>
-            </ul>
-            </div>
+  
+        <span className="brand-logo" ><img src={logo} alt='yap' width="230"  height="auto" /></span>
+                <ul id="nav-mobile" className="right hide-on-med-and-down">
+                {
+                  localStorage.token === "undefined" ? null : 
+                <li>
+                  <NavLink to="/" className="tab">Home</NavLink>
+                </li>
+                }
+                
+                <li>
+                  <NavLink to="/login" className="tab">Login</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/register" className="tab">Register</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/profile" className="tab">Profile</NavLink>
+                </li>
+                <li >
+                  <NavLink to="/welcome/index" onClick={this.clickingLogOut()} className="tab">Log Out</NavLink>
+                </li>
+              </ul>
+        </div>
     </nav>
   )
 }

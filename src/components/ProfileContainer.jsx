@@ -4,7 +4,7 @@ import BabbleFeedContainer from './BabbleFeedContainer'
 import "materialize-css/dist/css/materialize.min.css";
 import Modal from "./Modal";
 import CommentContainer  from "./commentsFolder/CommentsContainer";
-
+import WeatherApp from "./commentsFolder/WeatherContainer"
 
 
 class ProfileContainer extends Component {
@@ -150,6 +150,9 @@ class ProfileContainer extends Component {
                              }
                         </div>
                             <ColoredLine color="red" />
+                        <div  className="card horizontal z-depth-3">
+                            <WeatherApp />
+                        </div>
                     </div>
             </div>
         )
