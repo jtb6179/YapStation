@@ -25,13 +25,12 @@ class Form extends Component {
 
     return (
       <div className="row">
-
         <div className="col s12 l4 offset-14">
-          <div className="card">
+          <div className="card z-depth-4">
             <div className="card-action red accent-1 white-text">
                   <h4>{formName}</h4>
               </div>
-              <div className="card-content ">
+              <div className="card-content">
                 <form onSubmit={this.handleSubmit}>
                   <label htmlFor="username">Username:</label>
                   <input type="text" autoComplete="off" name="username" value={username} onChange={this.handleChange}/>

@@ -37,10 +37,9 @@ class ProfileContainer extends Component {
       }
 
             receiveBabbleObj = (comObject) => {
-                console.log(this.props.babbles);
-                    let theSpecificObject = this.props.babbles
+                console.log(comObject);
                             this.setState({
-                                babble: theSpecificObject
+                                babble: comObject
                             })
                 }
       
@@ -66,7 +65,7 @@ class ProfileContainer extends Component {
       })
         .then(res => res.json())
         .then((com) => {
-            console.log(com);
+            // console.log(com);
             if (com.id && comObj !== "") {
                 this.setState({
                     comments: [...this.state.comments, comObj]
@@ -89,7 +88,7 @@ class ProfileContainer extends Component {
           })
             .then(res => res.json())
             .then((bab) => {
-                console.log(bab);
+                // console.log(bab);
                 if (bab.id && babbleObj !== "") {
                     this.props.addOneBabble(bab)
                   } else {
@@ -101,7 +100,8 @@ class ProfileContainer extends Component {
       
 
     render() {
-
+        console.log(this.state.babble);
+        
         const ColoredLine = ({ color }) => (
             <hr
                 style={{
@@ -149,7 +149,7 @@ class ProfileContainer extends Component {
                                 null
                              }
                         </div>
-                            {/* <ColoredLine color="red" /> */}
+                            <ColoredLine color="red" />
                     </div>
             </div>
         )

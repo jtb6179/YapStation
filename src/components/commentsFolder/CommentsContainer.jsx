@@ -25,20 +25,25 @@ import React, { Component } from 'react'
       handleSubmit = (event) => {
         event.preventDefault()
         this.props.addCom(this.state)
+        this.setState({
+            text: ""
+        })
       }
     render() {
-        console.log(this.props.babb);
+        console.log(this.props.idOfElement);
         //This is not How you do this. Figure out how to get the specific post. 
         //as Post are created. they are passed in as an array. you must find the 
         //Specific post in that list and when you click on it. it grabs the correct
         //One and shows it. 
-        let mappedOutPost = this.props.babb.map((babbObj) => {
-            return babbObj.text
-        })
+    //     let anArray = this.props.receiveBabbleObj(this.props.babb)
+    //    console.log(anArray);
+       let theShitYouClicked = document.getElementById(this.props.idOfElement)
+       console.log(theShitYouClicked.innerText);
+        
         return (
             <div>
                 <div className="card">
-                        <span>{mappedOutPost}</span>
+                        <span>{theShitYouClicked.innerText}</span>
                 </div>
                     <div className="card-action">
                         <form onSubmit={this.handleSubmit}>
