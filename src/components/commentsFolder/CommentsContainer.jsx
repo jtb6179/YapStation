@@ -3,7 +3,30 @@ import React, { Component } from 'react'
  class CommentsContainer extends Component {
 
     state = {
-        text: ""
+        text: "",
+        allComments: []
+    }
+
+    componentDidMount(){
+        fetch('http://localhost:3000/comments')
+            .then(res => res.json())
+            .then((data) => {
+                this.setState({
+                    allComments: data
+                })
+            })
+    }
+
+    findAllTheSpecificCommentsForPost = (comObj) => {
+        // let TheNode =  document.getElementById()
+        // console.log(TheNode);
+        let theNewInstance = this.state.allComments.filter((comInstance) => {
+            console.log(comInstance);
+            return comInstance.id === this.props.idOfElement
+        })
+        console.log(theNewInstance);
+        
+        // return theNewInstance.text
     }
 
      handleGrabbingTheID = () =>{
@@ -15,13 +38,14 @@ import React, { Component } from 'react'
 
      handleChange = (event) => {
         event.preventDefault()
-        console.log(event.target.value);
+        // console.log(event.target.value);
         let {name, value} = event.target
         this.setState({
           [name]: value
         })
       }
     
+
       handleSubmit = (event) => {
         event.preventDefault()
         this.props.addCom(this.state)
@@ -38,7 +62,8 @@ import React, { Component } from 'react'
     //     let anArray = this.props.receiveBabbleObj(this.props.babb)
     //    console.log(anArray);
        let theShitYouClicked = document.getElementById(this.props.idOfElement)
-       console.log(theShitYouClicked.innerText);
+    //    console.log(theShitYouClicked.innerText);
+        console.log(this.findAllTheSpecificCommentsForPost());
         
         return (
             <div>
@@ -46,6 +71,9 @@ import React, { Component } from 'react'
                         <span>{theShitYouClicked.innerText}</span>
                 </div>
                     <div className="card-action">
+                        <div className="card-content">
+                            {this.findAllTheSpecificCommentsForPost}
+                        </div>
                         <form onSubmit={this.handleSubmit}>
                             <input type="text" name="text"  id="textarea1" className="materialize-textarea" 
                                     onChange={this.handleChange} 

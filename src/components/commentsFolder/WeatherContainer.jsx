@@ -36,9 +36,11 @@ function WeatherContainer ()  {
         
         return (
             <div className="z-depth-3">
+               
                 <div className={(typeof weather.main != "undefined") ? ((weather.main.temp < 40) ? 'App warm' : 'App') : 'App'}>
                     <main>
-                        <div className="search-box">
+                        <div className="search-box"> 
+                            <span> Search Your City </span>
                         <input 
                             type="text"
                             className="search-bar"
