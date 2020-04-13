@@ -17,17 +17,17 @@ import React, { Component } from 'react'
             })
     }
 
-    findAllTheSpecificCommentsForPost = (comObj) => {
-        // let TheNode =  document.getElementById()
-        // console.log(TheNode);
-        let theNewInstance = this.state.allComments.filter((comInstance) => {
-            console.log(comInstance);
-            return comInstance.id === this.props.idOfElement
-        })
-        console.log(theNewInstance);
+    // findAllTheSpecificCommentsForPost = (comObj) => {
+    //     // let TheNode =  document.getElementById()
+    //     // console.log(TheNode);
+    //     let theNewInstance = this.state.allComments.filter((comInstance) => {
+    //         console.log(comInstance);
+    //         return comInstance.id === this.props.idOfElement
+    //     })
+    //     console.log(theNewInstance);
         
-        // return theNewInstance.text
-    }
+    //     // return theNewInstance.text
+    // }
 
      handleGrabbingTheID = () =>{
         let theSpecificObject = this.props.babbles.filter((post) => {
@@ -54,32 +54,37 @@ import React, { Component } from 'react'
         })
       }
     render() {
-        console.log(this.props.idOfElement);
+        console.log(this.props.babb);
         //This is not How you do this. Figure out how to get the specific post. 
         //as Post are created. they are passed in as an array. you must find the 
         //Specific post in that list and when you click on it. it grabs the correct
         //One and shows it. 
     //     let anArray = this.props.receiveBabbleObj(this.props.babb)
     //    console.log(anArray);
-       let theShitYouClicked = document.getElementById(this.props.idOfElement)
+        // let theShitYouClicked = document.getElementById(this.props.idOfElement)
     //    console.log(theShitYouClicked.innerText);
-        console.log(this.findAllTheSpecificCommentsForPost());
+        // console.log(this.findAllTheSpecificCommentsForPost());
+        let comText = this.props.babb.comments.map((com) => {
+            return <span className="modal-content">
+                            <ul>{com.text}</ul>
+                        </span>
+        })
         
         return (
             <div>
                 <div className="card">
-                        <span>{theShitYouClicked.innerText}</span>
+                        <div>{this.props.babb.text}</div>
                 </div>
                     <div className="card-action">
                         <div className="card-content">
-                            {this.findAllTheSpecificCommentsForPost}
+                           {comText}
                         </div>
                         <form onSubmit={this.handleSubmit}>
                             <input type="text" name="text"  id="textarea1" className="materialize-textarea" 
                                     onChange={this.handleChange} 
                                     value={this.state.text} 
                                     />
-                            <button type="submit"  className=" waves-effect btn-small" >Post your Babble</button>
+                            <button type="submit"  className=" waves-effect btn-small" >Post your comment</button>
                         </form>
                     </div>
             </div>

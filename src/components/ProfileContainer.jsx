@@ -10,14 +10,14 @@ import WeatherApp from "./commentsFolder/WeatherContainer"
 class ProfileContainer extends Component {
 
     state = {
-        babble: [],
+        babble: {},
         comments: [],
         idOfElement: "",
         clickedDiv: false
     }
 
     componentDidMount() {
-        if(!this.props.token){
+        if(!localStorage.token){
           this.props.history.push("/login")
         }
         fetch("http://localhost:3000/comments")
@@ -29,33 +29,39 @@ class ProfileContainer extends Component {
             })
       }  
 
+      setBabble = (babbleObj) => {
+          this.setState({
+              babble: babbleObj
+          })
+      }
+
       ReceiveComment = (comObject) => {
-          console.log(comObject);
+        //   console.log(comObject);
         this.setState({
             idOfElement: comObject
         })
       }
 
             receiveBabbleObj = (comObject) => {
-                console.log(comObject);
+                // console.log(comObject);
                             this.setState({
                                 babble: comObject
                             })
                 }
       
     handleClickedDiv = (event) => {
-        console.log(event.target.id);
+        // console.log(event.target.id);
         this.setState({
             clickedDiv: !this.state.clickedDiv
         })
         this.setState({
             idOfElement: event.target.id
         })
-        this.receiveBabbleObj()
+        // this.receiveBabbleObj()
     }
 
       addAllTheCommentsToThePost = (comObj) => {
-          comObj.babble_id = this.state.idOfElement
+        comObj.babble_id = this.state.idOfElement
         fetch("http://localhost:3000/comments", {
           method: "POST",
           headers: {
@@ -100,7 +106,7 @@ class ProfileContainer extends Component {
       
 
     render() {
-        // console.log(this.state.babble);
+        console.log(this.state.babble);
         
         const ColoredLine = ({ color }) => (
             <hr
@@ -130,7 +136,7 @@ class ProfileContainer extends Component {
                                     />
                             <div onClick={this.handleClickedDiv}>
                                 <BabbleFeedContainer  babbles={this.props.babbles}
-                                                                    token={this.props.token} ReceiveComment={this.ReceiveComment} />
+                                                                    token={this.props.token} setBabble={this.setBabble} />
                             </div>
                     </div>
                     <div className="col s4">

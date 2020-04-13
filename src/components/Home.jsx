@@ -16,7 +16,7 @@ class Home extends Component {
       })
   }
   render() {
-    // console.log(this.state);
+    console.log(this.state);
     
     let theFeed = this.state.babbles.map((oneBab) => {
       return <HomeBabbles key={oneBab.id} bab={oneBab} token={this.props.token} />
@@ -24,7 +24,9 @@ class Home extends Component {
     return (
       <div>
         <h4>Where Your Non-sense thoughts are Free</h4>
-        {theFeed}
+            <div className="container control-scroll">
+                  {theFeed}      
+          </div>
       </div>
     )
   }

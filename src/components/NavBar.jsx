@@ -14,16 +14,8 @@ class NavBar extends React.Component {
       let newClicked = !this.props.clickedState
        if (newClicked) {
        localStorage.clear(this.props.token)
-      //  this.props.setBabblesBackToEmptyArray()
       }
-      // fetch("http://localhost:3000/babbles")
-      //   .then(res => res.json())
-      //   .then((data) =>{
-      //     data = []
-      //     this.setState({
-      //       babbles: data
-      //     })
-      //   })
+      this.props.logOut()
     }
 
     render(){
@@ -50,7 +42,7 @@ class NavBar extends React.Component {
                   <NavLink to="/profile" className="tab">Profile</NavLink>
                 </li>
                 <li >
-                  <NavLink to="/welcome/index" onClick={this.clickingLogOut()} className="tab">Log Out</NavLink>
+                  <NavLink to="/welcome/index" onClick={this.clickingLogOut} className="tab">Log Out</NavLink>
                 </li>
               </ul>
         </div>

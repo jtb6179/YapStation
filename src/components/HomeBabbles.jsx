@@ -8,10 +8,14 @@ class HomeBabbles extends Component {
         
         return (
             <div> 
-             <span  className="card horizontal"> 
-                {this.props.bab.text} <hr/>
-                <button className="btn pulse">comment</button>
-                </span>
+                <div  className="card-home"> 
+                    {this.props.bab.text}
+                    <input type="text" name="text"  className="materialize-textarea" 
+                                        // onChange={this.handleChange} 
+                                        // value={this.state.text} 
+                                        />
+                    <button className=" waves-effect btn-small" >Post your Babble</button>
+                    </div>
             </div>
                  
         )

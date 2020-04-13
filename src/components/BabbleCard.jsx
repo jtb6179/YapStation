@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 
 class BabbleCard extends Component {
 
+    handleClick = (event) => {
+        this.props.setBabble(this.props.babble)
+    } 
     render() {
         let {text} = this.props.babble
-        // console.log(this.props.babble.comments);
+        // console.log(this.props.babble);
         
         return (
             <div>
-                <div  className="card horizontal"> 
+                <div  className="card horizontal" onClick={this.handleClick}> 
                     <div id={this.props.id} className="card-content">
                     {text} <hr/>
                     </div>

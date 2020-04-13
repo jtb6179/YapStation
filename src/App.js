@@ -27,11 +27,14 @@ class App extends Component {
     token: "",
     clicked: false
   }
+
     handleResp = (resp) => {
+      console.log(resp.user); 
         if (resp.user) {
-          localStorage.token = resp.token
+          localStorage.setItem('token', resp.token)
           this.setState({
             user: resp.user,
+            babbles: resp.user.babbles,
             token: resp.token
           }, () => {
             this.props.history.push("/profile")
@@ -40,7 +43,19 @@ class App extends Component {
         else {
           alert(resp.error)
         }
+      }
 
+      handleLogOut = () => {
+        this.setState({
+          user: { username: "",
+          profile_name:"",
+          bio: "",
+          age: 0,
+          location: "",
+          education_status: "",
+          gender: "",
+          contact_info: ""}
+        })
       }
  
     componentDidMount() {
@@ -109,7 +124,7 @@ return <ProfileContainer  user={this.state.user} token={this.state.token}
     return (
       <div>
         <NavBar clickedState={this.state.clicked} token={this.state.token} 
-        babbles={this.state.babbles} setBabblesBackToEmptyArray={this.setBabblesBackToEmptyArray} />
+        logOut={this.handleLogOut} setBabblesBackToEmptyArray={this.setBabblesBackToEmptyArray} />
           <Switch>
             <Route path="/login" render={ this.renderRegisterForm } />
             <Route path="/register" render={ this.renderRegisterForm } />
