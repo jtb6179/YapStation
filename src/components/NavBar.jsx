@@ -1,6 +1,5 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
-import logo from '../image/home-run.png'
 import "../App.scss"
 // import { faBars } from "@fortawesome/free-solid-svg-icons";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -49,15 +48,9 @@ class NavBar extends React.Component {
       return(
     <div className="nav-thing" >
        <div className="all ">
-        {/* <div>
-          <div className="brand-logo" ><img src={logo} alt='yap'  width="50" height="auto" /></div>
-        </div> */}
-                {
-                  localStorage.token === "undefined" ? null : 
                 <div className="lefter">
                   <NavLink to="/" className="text">Home</NavLink>
                 </div>
-                }
                 <div className="left">
                   <NavLink to="/login" className="text">Login</NavLink>
                 </div>

@@ -1,35 +1,47 @@
 import React, { Component } from 'react'
-// import backGroundImg from "../image/marco-chilese-DigI2ej3AFw-unsplash.jpg"
+import {withRouter} from 'react-router-dom'
 import "../LandingPage.css"
 // import info from "../image/YapStation.jpg"
 
 export class WelcomePage extends Component {
+    state = {
+        clickedPic: false
+    }
+
+    handleClickedDiv = (event) => {
+        console.log(event.target);
+        this.setState({
+            clickedPic: !this.state.clickedPic
+        })
+        this.props.history.push(`/register`);
+    }
+
     render() {
         return (
             <div className="row">
             <div className="col s6 offset-s1">
-                <div class="wrapper col">
-                        <div class="card-thing">
+                <div className="wrapper col" onClick={this.handleClickedDiv}>
+                        <div className="card-thing">
                             <h1>
-                            <span class="enclosed">Create</span>profile
+                            <span className="enclosed">Create</span>profile
                             </h1>
                         </div>
                 </div>
             </div>
             <div className="col s2">
-                <div class="wrapper col">
-                        <div class="card-thing">
+                <div className="wrapper col" onClick={this.handleClickedDiv}>
+                        <div className="card-thing">
                             <h1>
-                            <span class="enclosed">Post</span>Your Feeling & secrets
+                            <span className="enclosed">Post</span>Your Feeling & secrets
                             </h1>
                         </div>
                 </div>
             </div>
             <div className="center-piece">
-                <div class="wrapper col">
-                        <div class="card-thing">
+                <div className="wrapper col" onClick={this.handleClickedDiv}>
+                        <div className="card-thing">
                             <h1>
-                            <span class="enclosed">Enjoy</span>Your Dashboard
+                            <span className="enclosed">Enjoy</span>Your Dashboard
                             </h1>
                         </div>
                 </div>
@@ -43,4 +55,4 @@ export class WelcomePage extends Component {
     }
 }
 
-export default WelcomePage
+export default withRouter(WelcomePage)

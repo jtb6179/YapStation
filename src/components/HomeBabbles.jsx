@@ -4,7 +4,7 @@ class HomeBabbles extends Component {
 
     render() {
         // let {text} = this.props.babble
-        console.log(this.props);
+        console.log(this.props.token);
         
         return (
             <div> 

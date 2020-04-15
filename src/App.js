@@ -1,9 +1,10 @@
 import Form from './components/UserForm'
-import Home from './components/Home'
+// import Home from './components/Home'
 import NavBar from './components/NavBar'
 import RegisterForm from './components/UserRegisterForm'
 import ProfileContainer from './components/ProfileContainer'
 import {Switch, Route, withRouter} from 'react-router-dom'
+import AppWrapper from "./components/commentsFolder/AppWrapper"
 import WelcomePage from './components/WelcomePage'
 import './App.css';
 import React, { Component } from 'react'
@@ -120,16 +121,21 @@ return <ProfileContainer  user={this.state.user} token={this.state.token}
   //   this.state.babbles.splice()
   // }
   render() {
+    console.log(this.state.token);
+    
     return (
       <div>
+      
         <NavBar clickedState={this.state.clicked} token={this.state.token} 
         logOut={this.handleLogOut} setBabblesBackToEmptyArray={this.setBabblesBackToEmptyArray} />
+        
           <Switch>
             <Route path="/login" render={ this.renderRegisterForm } />
             <Route path="/register" render={ this.renderRegisterForm } />
             <Route path="/profile" render={ this.renderProfile } />
-            <Route path="/" exact component={ Home } />
+            <Route path="/" exact component={ AppWrapper } token={this.state.token} />
             <Route path="/welcome/index" exact component={ WelcomePage }/>
+            {/* <AppWrapper /> */}
             <Route render={ () => <p>Page not Found</p> } />
           </Switch>
       </div>
