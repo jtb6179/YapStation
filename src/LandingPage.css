@@ -1,32 +1,98 @@
 body {
     margin: 0;
     padding: 0;
-    /* background-color: #FFC9C8; */
+    background-color: rgb(241, 225, 225);
 }
 
-section {
+.wrapper {
     position: relative;
-    margin: 0 auto;
-    max-width: 1280px;
-    /* width: 90%; */
-    width: 670px;
-    height: 735px;
-    background-image: url("./marco-chilese-DigI2ej3AFw-unsplash.jpg");
-    background-size: cover;
-    /* background-attachment: fixed; */
-}
-/* @media only screen and (min-width: 601px) {
-    section{
-      width: 85%;
-    }
+    perspective: 40em;
+    display: grid;
+    transform-style: preserve-3d;
   }
   
-  @media only screen and (min-width: 793px) {
-    section{
-      width: 70%;
-    }
-  } */
-section .warp{
+  .card-thing {
+    grid-area: 1 / 1;
+    height: 200px;
+    width: 400px;
+    transform: translateX(10px) rotateY(25deg) rotateX(10deg);
+    background: rgba(231, 72, 24, 0.88);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 30px;
+    color: #000;
+    text-transform: uppercase;
+    font-size: 60px;
+    font-weight: 900;
+    backface-visibility: hidden;
+    box-shadow: 0 10px 30px -3px rgba(0,0,0,.1);
+  }
+  
+  h1 {
+    font-size: 60px;
+    font-weight: 900;
+  }
+  
+  .center-piece {
+    position:absolute; 
+    bottom: 230px;
+    left: 500px;
+    /* width: 100%; */
+    text-align: center;
+  }
+  .card-thing .enclosed {
+    background: #000;
+    line-height: 1;
+    color: rgb(243, 241, 233);
+    padding: 0 5px;
+    display: inline-block;
+    transform: translate(-1px, 1px) scale(0.75);
+    transform-origin: right center;
+  }
+  
+  .wrapper:before {
+    --bw: 9px;
+    grid-area: 1 / 1;
+    content: '';
+    backface-visibility: hidden;
+    height: 100%;
+    width: 100%;
+    margin-top: calc(-1 * var(--bw));
+    margin-left: calc(-1 * var(--bw));
+    background: transparent;
+    transform: translateX(-60px) rotateY(-30deg) rotateX(15deg) scale(1.03);
+    pointer-events: none;
+    border: var(--bw) solid #000;
+    box-sizing: content-box;
+  }
+  
+  
+  .wrapper:hover > div,
+  .wrapper:hover:before {
+    transform: none;
+  }
+  
+  
+  .wrapper > div,
+  .wrapper:before {
+    will-change: transform;
+    transition: .3s transform cubic-bezier(.25,.46,.45,1);
+  }
+  
+  
+.section-portion {
+    /* position: relative; */
+    /* margin: 0 auto; */
+    /* float: right; */
+     /* width: ;  */
+    /* width: 100%; */
+    /* height: 400px; */
+    /* background-image: url("./image/YapStation.png"); */
+    /* background-size: cover; */
+}
+
+.section-portion .warp{
 
     position: absolute;
     float: left;
@@ -39,7 +105,7 @@ section .warp{
     /* transform: rotate(90deg) */
 }
 
-section .warp:before{
+.section-portion .warp:before{
     content: '';
     width: 100%;
     height: 143px;
@@ -50,7 +116,7 @@ section .warp:before{
     opacity: 0.4;
     animation: animate-reverse 10s linear infinite
 }
-section .warp:after{
+.section-portion .warp:after{
     content: '';
     width: 100%;
     height: 143px;

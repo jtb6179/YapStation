@@ -4,7 +4,6 @@ import NavBar from './components/NavBar'
 import RegisterForm from './components/UserRegisterForm'
 import ProfileContainer from './components/ProfileContainer'
 import {Switch, Route, withRouter} from 'react-router-dom'
-// import JwtDecode from 'jwt-decode';
 import WelcomePage from './components/WelcomePage'
 import './App.css';
 import React, { Component } from 'react'
