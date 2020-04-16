@@ -4,10 +4,11 @@ import NavBar from './components/NavBar'
 import RegisterForm from './components/UserRegisterForm'
 import ProfileContainer from './components/ProfileContainer'
 import {Switch, Route, withRouter} from 'react-router-dom'
-import AppWrapper from "./components/commentsFolder/AppWrapper"
+// import AppWrapper from "./components/commentsFolder/AppWrapper"
 import WelcomePage from './components/WelcomePage'
 import './App.css';
 import React, { Component } from 'react'
+import Home from './components/Home'
 
 
 class App extends Component {
@@ -25,11 +26,12 @@ class App extends Component {
     },
     babbles: [],
     token: "",
-    clicked: false
+    clicked: false,
+    searchTerm: ""
   }
 
     handleResp = (resp) => {
-      console.log(resp.user); 
+      // console.log(resp.user); 
         if (resp.user) {
           localStorage.setItem('token', resp.token)
           this.setState({
@@ -117,11 +119,36 @@ return <ProfileContainer  user={this.state.user} token={this.state.token}
                                           babbles={this.state.babbles} />
       }
 
-  // setBabblesBackToEmptyArray = () => {
-  //   this.state.babbles.splice()
-  // }
-  render() {
+  WhenRenderingHome = (routerProps) => {
     console.log(this.state.token);
+    if (this.state.token === "") {
+      return <WelcomePage />
+    } else if(routerProps.location.pathname === "/") {
+      return <Home user={this.state.user} token={this.state.token} changeSearchTerm={this.changeSearchTerm} 
+      // {/*searching={this.returnsAnArray()}*/}
+
+      />
+
+    }
+  }
+
+  changeSearchTerm = (termFromChild) => {
+    this.setState({
+      searchTerm: termFromChild
+    })
+  }
+
+  // returnsAnArray = () => {
+  //   let {user, searchTerm} = this.state
+  //   let filteredArray = user.filter((oneUser) => {
+  //     return oneUser.location.includes(searchTerm) 
+  //   })
+  //   return filteredArray
+  // }
+
+
+  render() {
+    // console.log(this.p);
     
     return (
       <div>
@@ -133,9 +160,8 @@ return <ProfileContainer  user={this.state.user} token={this.state.token}
             <Route path="/login" render={ this.renderRegisterForm } />
             <Route path="/register" render={ this.renderRegisterForm } />
             <Route path="/profile" render={ this.renderProfile } />
-            <Route path="/" exact component={ AppWrapper } token={this.state.token} />
+            <Route path="/" render={this.WhenRenderingHome} />
             <Route path="/welcome/index" exact component={ WelcomePage }/>
-            {/* <AppWrapper /> */}
             <Route render={ () => <p>Page not Found</p> } />
           </Switch>
       </div>

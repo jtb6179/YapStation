@@ -106,7 +106,7 @@ class ProfileContainer extends Component {
       
 
     render() {
-        console.log(this.state.babble);
+        // console.log(this.state.babble);
         
         const ColoredLine = ({ color }) => (
             <hr

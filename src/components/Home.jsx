@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import HomeBabbles from "./HomeBabbles"
+import SearchBox from './SearchBox'
+import UserCard from "./UserCard"
+
 
 class Home extends Component {
 
   state = { 
-    babbles: []
+    babbles: [],
+    user: []
   }
   componentDidMount(){
     fetch("http://localhost:3000/babbles")
@@ -16,21 +20,29 @@ class Home extends Component {
       })
   }
 
+  giveMeUsers = (event) => {
+    
+  }
+  
+
   
   render() {
-    // console.log(this.state);
+    console.log(this.props.user);
     
     let theFeed = this.state.babbles.map((oneBab) => {
       return <HomeBabbles key={oneBab.id} bab={oneBab} token={this.props.token} />
     })
     return (
-      <div>
-        <h4>Where Your Non-sense thoughts are Free</h4>
-            <div className="container control-scroll">
-            {/* {this.handleWhetherLoggedIn} */}
-                  {theFeed}      
-          </div>
-      </div>
+  <div className="row">
+    <div className="col s6">
+      <SearchBox user={this.props.user} changeSearchTerm={this.props.changeSearchTerm} babbles={this.state.babbles}/>
+      <UserCard searching={this.props.searching}/>
+    </div>
+      <div className="col s6 control-scroll">
+      {/* {this.handleWhetherLoggedIn} */}
+            {theFeed}      
+    </div>
+  </div>
     )
   }
 }
