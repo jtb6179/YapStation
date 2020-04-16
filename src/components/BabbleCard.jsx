@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Row, Col, Card, Icon } from 'react-materialize'
 
 class BabbleCard extends Component {
 
@@ -11,15 +12,33 @@ class BabbleCard extends Component {
         
         return (
             <div>
-                <div  className="card horizontal" onClick={this.handleClick}> 
-                    <div id={this.props.id} className="card-content">
-                    {text} <hr/>
+                <Row>
+                    <Col
+                        m={10}
+                        s={12}
+                                    >
+                        <Card
+                        // actions={[
+                        //     <a key="1" href="#">This is a link</a>,
+                        //     <a key="2" href="#">This is a link</a>
+                        // ]}
+                        className="red darken-2"
+                        closeIcon={<Icon>close</Icon>}
+                        revealIcon={<Icon>more_vert</Icon>}
+                        textClassName="white-text"
+                        >
+                    <div onClick={this.handleClick}> 
+                        <div id={this.props.id}>
+                            {text} 
+                        </div>
+                        <div>
+                            <p>Likes: {this.props.babble.babble_likes.length} </p>
+                            <p>comment: {this.props.babble.comments.length}</p>
+                        </div>
                     </div>
-                    <div className="card-action">
-                        <p>Likes: {this.props.babble.babble_likes.length} </p>
-                        <p>comment: {this.props.babble.comments.length}</p>
-                    </div>
-                </div>
+                        </Card>
+                    </Col>
+                </Row>
             </div>
         )
     }

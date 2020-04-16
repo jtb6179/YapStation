@@ -26,8 +26,7 @@ class App extends Component {
     },
     babbles: [],
     token: "",
-    clicked: false,
-    searchTerm: ""
+    clicked: false
   }
 
     handleResp = (resp) => {
@@ -105,6 +104,26 @@ handleRegisterSubmit = (userInfo) => {
   .then( this.handleResp)
 }
 
+
+addFriends = (userClicked) => {
+    // userInfo.friends 
+      fetch(`http://localhost:3000/friendships`, {
+          method: "POST",
+          headers: {
+              'content-type': "application/json",
+              "Authorization": `Bearer ${localStorage.token}`
+          }, body: JSON.stringify({friend_id: userClicked.id})
+      })
+          .then(res => res.json())
+          .then( 
+            ()=>{
+            alert(`Yay!!! you now Friends with ${userClicked.profile_name}`)
+          }
+          )
+  }
+
+
+
 renderRegisterForm = (routerProps) => {
   if (routerProps.location.pathname === "/register") {
     return <RegisterForm formName="Register Form" handleSubmit={this.handleRegisterSubmit} />
@@ -124,7 +143,7 @@ return <ProfileContainer  user={this.state.user} token={this.state.token}
     if (this.state.token === "") {
       return <WelcomePage />
     } else if(routerProps.location.pathname === "/") {
-      return <Home user={this.state.user} token={this.state.token} changeSearchTerm={this.changeSearchTerm} 
+      return <Home user={this.state.user} addFriends={this.addFriends} token={this.state.token}  
       // {/*searching={this.returnsAnArray()}*/}
 
       />
@@ -132,12 +151,7 @@ return <ProfileContainer  user={this.state.user} token={this.state.token}
     }
   }
 
-  changeSearchTerm = (termFromChild) => {
-    this.setState({
-      searchTerm: termFromChild
-    })
-  }
-
+  
   // returnsAnArray = () => {
   //   let {user, searchTerm} = this.state
   //   let filteredArray = user.filter((oneUser) => {

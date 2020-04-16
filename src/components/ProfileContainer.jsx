@@ -140,7 +140,7 @@ class ProfileContainer extends Component {
                             </div>
                     </div>
                     <div className="col s4">
-                        <div  className="card horizontal z-depth-3"> 
+                        <div> 
                         { this.state.clickedDiv ?  
                             <div>
                                 <CommentContainer  babbles={this.props.babbles} ReceiveComment={this.props.ReceiveComment} 

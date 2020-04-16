@@ -9,7 +9,7 @@ export class SearchBox extends Component {
       }
 
     render() {
-        console.log(this.props.user);
+        // console.log(this.props.user);
         
         return (
             <div>
@@ -17,7 +17,7 @@ export class SearchBox extends Component {
                     <p>Search for Friends in your Area</p>
                     <form>
                         <input className="search-txt" type="text" placeholder="       Search . . ."  value={this.props.searchTerm}
-                                onChange={this.handleChange} />
+                                onChange={this.gettingAllTheUsersSearch} />
                     </form>
                 <div>
                 </div>

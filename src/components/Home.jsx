@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import HomeBabbles from "./HomeBabbles"
 import SearchBox from './SearchBox'
-import UserCard from "./UserCard"
+import UserContainer from "./UserContainer"
 
 
 class Home extends Component {
 
   state = { 
     babbles: [],
-    user: []
+    user: [],
+    searchTerm: ""
   }
   componentDidMount(){
     fetch("http://localhost:3000/babbles")
@@ -18,12 +19,29 @@ class Home extends Component {
          babbles: data
         })
       })
+      fetch('http://localhost:3000/api/v1/users')
+        .then(res => res.json())
+        .then((aUser) => {
+          this.setState({
+            user: aUser
+          })
+        })
   }
 
-  giveMeUsers = (event) => {
-    
-  }
   
+  changeSearchTerm = (termFromChild) => {
+    this.setState({
+      searchTerm: termFromChild
+    })
+  }
+
+  returnsAnArray = () => {
+      let {user, searchTerm} = this.state
+      let filteredArray = user.filter((oneUser) => {
+        return oneUser.location.includes(searchTerm) 
+      })
+      return filteredArray
+    }
 
   
   render() {
@@ -35,11 +53,10 @@ class Home extends Component {
     return (
   <div className="row">
     <div className="col s6">
-      <SearchBox user={this.props.user} changeSearchTerm={this.props.changeSearchTerm} babbles={this.state.babbles}/>
-      <UserCard searching={this.props.searching}/>
+      <SearchBox user={this.props.user} searchTerm={this.state.searchTerm} changeSearchTerm={this.changeSearchTerm} babbles={this.state.babbles}/>
+      <UserContainer addFriends= {this.props.addFriends} current_user={this.props.user} users={this.returnsAnArray()} token={this.props.token} />
     </div>
       <div className="col s6 control-scroll">
-      {/* {this.handleWhetherLoggedIn} */}
             {theFeed}      
     </div>
   </div>
