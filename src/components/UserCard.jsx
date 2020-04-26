@@ -16,7 +16,7 @@ export class UserCard extends Component {
     render() {
         console.log(this.props.current_user.friends);
         
-        let {profile_name, bio, age, location } = this.props.usersInfo
+        let { profile_name, bio, age, location } = this.props.usersInfo
         return (
             <div>
                 <Row>

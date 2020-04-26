@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Row, Col, Card, Icon, CardPanel } from 'react-materialize'
 
  class CommentsContainer extends Component {
 
@@ -55,24 +56,24 @@ import React, { Component } from 'react'
       }
     render() {
         console.log(this.props.babb);
-        //This is not How you do this. Figure out how to get the specific post. 
-        //as Post are created. they are passed in as an array. you must find the 
-        //Specific post in that list and when you click on it. it grabs the correct
-        //One and shows it. 
-    //     let anArray = this.props.receiveBabbleObj(this.props.babb)
-    //    console.log(anArray);
-        // let theShitYouClicked = document.getElementById(this.props.idOfElement)
-    //    console.log(theShitYouClicked.innerText);
-        // console.log(this.findAllTheSpecificCommentsForPost());
+        const ColoredLine = ({ color }) => (
+            <hr
+                style={{
+                    color: color,
+                    backgroundColor: color,
+                    width: 30
+                }}
+            />
+        );
         let comText = this.props.babb.comments.map((com) => {
-            return <span className="modal-content">
+            return <span className="card">
                             <ul>{com.text}</ul>
                         </span>
         })
         
         return (
             <div>
-                <div className="card">
+                {/* <div className="card">
                         <div>{this.props.babb.text}</div>
                 </div>
                     <div className="card-action">
@@ -86,7 +87,48 @@ import React, { Component } from 'react'
                                     />
                             <button type="submit"  className=" waves-effect btn-small" >Post your comment</button>
                         </form>
+                    </div> */}
+
+                    <Row>
+                    <Col
+                        m={10}
+                        s={12}
+                                    >
+                        <Card
+                        // actions={[
+                        //     <a key="1" href="#">This is a link</a>,
+                        //     <a key="2" href="#">This is a link</a>
+                        // ]}
+                        className="red darken-2"
+                        closeIcon={<Icon>close</Icon>}
+                        revealIcon={<Icon>more_vert</Icon>}
+                        textClassName="white-text"
+                        >
+                    <div> 
+                        <div>
+                            <div>{this.props.babb.text}</div>
+                        </div>
+                            <CardPanel className="red">
+                                <span className="white-text">
+                                    <div>
+                                        {comText}
+                                            <ColoredLine color="red" />
+                                    </div>
+                                </span>
+                            </CardPanel>
+                        <div>
+                        <form onSubmit={this.handleSubmit}>
+                            <input type="text" name="text"  id="textarea1" className="materialize-textarea" 
+                                    onChange={this.handleChange} 
+                                    value={this.state.text} 
+                                    />
+                            <button type="submit"  className=" waves-effect btn-small" >Post your comment</button>
+                            </form>
+                        </div>
                     </div>
+                        </Card>
+                    </Col>
+                </Row>
             </div>
         )
     }

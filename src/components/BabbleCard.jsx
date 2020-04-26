@@ -25,7 +25,6 @@ class BabbleCard extends Component {
                         className="red darken-2"
                         closeIcon={<Icon>close</Icon>}
                         revealIcon={<Icon>more_vert</Icon>}
-                        textClassName="white-text"
                         >
                     <div onClick={this.handleClick}> 
                         <div id={this.props.id}>
